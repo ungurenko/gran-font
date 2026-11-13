@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Gran · проверка форматов</title>
+<style>
+  @font-face { font-family: "GranOTF"; src: url("fonts/Gran-Bold.otf") format("opentype"); font-weight: 700; }
+  @font-face { font-family: "GranTTF"; src: url("fonts/Gran-Bold.ttf") format("truetype"); font-weight: 700; }
+  @font-face { font-family: "GranWOFF2"; src: url("fonts/Gran-Bold.woff2") format("woff2"); font-weight: 700; }
+  body { margin: 0; padding: 24px; background: #111; color: #f4f4f4; font-family: system-ui, sans-serif; }
+  .row { display: flex; gap: 20px; align-items: baseline; border-bottom: 1px solid #333; padding: 10px 0; }
+  .row b { flex: none; width: 90px; font: 12px ui-monospace, Menlo, monospace; color: #999; font-weight: 400; }
+  .t { font-weight: 700; font-synthesis: none; font-size: 44px; line-height: 1.2; }
+</style>
+</head>
+<body>
+  <div class="row"><b>OTF (CFF)</b><span class="t" style="font-family:'GranOTF',monospace">Грань AVA Typography 2026 ₽ №</span></div>
+  <div class="row"><b>TTF (glyf)</b><span class="t" style="font-family:'GranTTF',monospace">Грань AVA Typography 2026 ₽ №</span></div>
+  <div class="row"><b>WOFF2</b><span class="t" style="font-family:'GranWOFF2',monospace">Грань AVA Typography 2026 ₽ №</span></div>
+  <p id="status" style="font: 14px ui-monospace, Menlo, monospace; color: #9f9"></p>
+<script>
+  Promise.all(['GranOTF', 'GranTTF', 'GranWOFF2'].map(function (f) { return document.fonts.load('700 44px ' + f, 'Грань'); }))
+    .then(function (r) {
+      document.getElementById('status').textContent = 'loaded: ' + [...document.fonts].map(function (f) { return f.family + '=' + f.status; }).join(', ');
+    });
+</script>
+</body>
+</html>

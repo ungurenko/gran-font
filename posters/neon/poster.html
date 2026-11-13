@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Gran neon poster</title>
+<style>
+  @font-face { font-family: "Gran"; font-weight: 400; src: url("../../dist/Gran-Regular.woff2") format("woff2"); }
+  @font-face { font-family: "Gran"; font-weight: 300; src: url("../../dist/Gran-Light.woff2") format("woff2"); }
+  @font-face { font-family: "Gran"; font-weight: 700; src: url("../../dist/Gran-Bold.woff2") format("woff2"); }
+  @font-face { font-family: "Gran"; font-weight: 900; src: url("../../dist/Gran-Black.woff2") format("woff2"); }
+  html, body { margin: 0; background: #000; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1088" height="1360"></canvas>
+<script>
+/* Параметры из адреса: ?bg=gen/bg-0.png&title=ГРАНЬ&top=...&topr=...&b1=...&b2=...&b3=...&seed=3 */
+const q = new URLSearchParams(location.search);
+const P = {
+  bg: q.get("bg") || "gen/bg-0.png",
+  title: q.get("title") || "ГРАНЬ",
+  top: q.get("top") || "GRAN · ДИСПЛЕЙНЫЙ ШРИФТ",
+  topr: q.get("topr") || "13 · 11 · 26",
+  b1: q.get("b1") || "ЛАТИНИЦА + КИРИЛЛИЦА",
+  b2: q.get("b2") || "8 НАЧЕРТАНИЙ",
+  b3: q.get("b3") || "БЕЗ ЕДИНОЙ ДУГИ",
+  seed: +(q.get("seed") || 3),
+};
+const W = 1088, H = 1360, M = 64;
+const cv = document.getElementById("c"), ctx = cv.getContext("2d");
+
+function rnd(s) { return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+
+async function main() {
+  await Promise.all(["900 100px Gran", "400 20px Gran", "300 20px Gran", "700 20px Gran"].map(f => document.fonts.load(f, "АБВГЯgran")));
+  const bg = new Image(); bg.src = P.bg; await bg.decode();
+
+  // 1. фон
+  ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, H);
+  ctx.drawImage(bg, 0, 0, W, H);
+  // чуть темнее верх, чтобы заголовок держался
+  const vg = ctx.createLinearGradient(0, 0, 0, H);
+  vg.addColorStop(0, "rgba(0,0,0,.55)"); vg.addColorStop(.45, "rgba(0,0,0,.15)"); vg.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
+
+  // 2. размер заголовка по ширине
+  const maxW = W - M * 2;
+  let size = 400;
+  ctx.font = `900 ${size}px Gran`;
+  size = Math.floor(size * maxW / ctx.measureText(P.title).width);
+  ctx.font = `900 ${size}px Gran`;
+  ctx.textBaseline = "alphabetic";
+  const tw = ctx.measureText(P.title).width;
+  const x0 = (W - tw) / 2;
+  const base = 560; // линия низа букв
+
+  // 3. «стёкший неон» под буквами: тянем нижнюю строку букв вниз
+  const off = document.createElement("canvas"); off.width = W; off.height = H;
+  const o = off.getContext("2d");
+  o.font = ctx.font; o.fillStyle = "#fff"; o.fillText(P.title, x0, base);
+  const row = o.getImageData(0, base - 10, W, 1).data;
+  const r = rnd(P.seed);
+  const smear = document.createElement("canvas"); smear.width = W; smear.height = H;
+  const s = smear.getContext("2d");
+  const phases = [r() * 6, r() * 6, r() * 6];
+  for (let x = 0; x < W; x++) {
+    if (row[x * 4 + 3] < 128) continue;
+    const L = 380 + 260 * (0.5 + 0.5 * Math.sin(x / 41 + phases[0])) * (0.5 + 0.5 * Math.sin(x / 17 + phases[1])) + 150 * Math.sin(x / 97 + phases[2]);
+    const g = s.createLinearGradient(0, base - 10, 0, base + L);
+    g.addColorStop(0, "rgba(255,255,255,.95)");
+    g.addColorStop(.08, "rgba(255,214,150,.9)");
+    g.addColorStop(.22, "rgba(255,90,70,.8)");
+    g.addColorStop(.5, "rgba(236,52,200,.55)");
+    g.addColorStop(.8, "rgba(80,60,255,.3)");
+    g.addColorStop(1, "rgba(40,60,255,0)");
+    s.fillStyle = g; s.fillRect(x, base - 10, 1.2, L);
+  }
+  ctx.save(); ctx.globalCompositeOperation = "screen";
+  ctx.filter = "blur(18px)"; ctx.drawImage(smear, 0, 0);
+  ctx.filter = "blur(5px)";  ctx.drawImage(smear, 0, 0);
+  ctx.filter = "blur(1.5px)"; ctx.globalAlpha = .8; ctx.drawImage(smear, 0, 0);
+  ctx.restore();
+
+  // 4. заголовок: цветная кайма + свечение + чистая заливка
+  ctx.save(); ctx.globalCompositeOperation = "screen";
+  ctx.fillStyle = "rgba(0,170,255,.9)"; ctx.fillText(P.title, x0 - 5, base);
+  ctx.fillStyle = "rgba(255,90,40,.9)";  ctx.fillText(P.title, x0 + 5, base);
+  ctx.restore();
+  ctx.save();
+  ctx.shadowColor = "rgba(255,70,210,.85)"; ctx.shadowBlur = 60;
+  ctx.fillStyle = "#fff"; ctx.fillText(P.title, x0, base);
+  ctx.shadowColor = "rgba(90,80,255,.9)"; ctx.shadowBlur = 24;
+  ctx.fillText(P.title, x0, base);
+  ctx.restore();
+  const tg = ctx.createLinearGradient(0, base - size * 0.72, 0, base);
+  tg.addColorStop(0, "#ffffff"); tg.addColorStop(.7, "#f4ecff"); tg.addColorStop(1, "#ffd9c2");
+  ctx.fillStyle = tg; ctx.fillText(P.title, x0, base);
+
+  // 5. мелкий текст Gran
+  ctx.fillStyle = "#fff";
+  ctx.font = "700 20px Gran"; ctx.letterSpacing = "3px";
+  ctx.textAlign = "left";  ctx.fillText(P.top, M, M + 18);
+  ctx.textAlign = "right"; ctx.fillText(P.topr, W - M, M + 18);
+  ctx.fillStyle = "rgba(255,255,255,.55)"; ctx.fillRect(M, M + 38, W - M * 2, 1);
+
+  ctx.font = "400 20px Gran"; ctx.letterSpacing = "3px";
+  ctx.fillStyle = "rgba(255,255,255,.92)";
+  const by = H - M;
+  ctx.textAlign = "left";   ctx.fillText(P.b1, M, by);
+  ctx.textAlign = "center"; ctx.fillText(P.b2, W / 2, by);
+  ctx.textAlign = "right";  ctx.fillText(P.b3, W - M, by);
+  ctx.fillStyle = "rgba(255,255,255,.55)"; ctx.fillRect(M, by - 38, W - M * 2, 1);
+
+  // 6. зерно поверх всего
+  const gr = ctx.getImageData(0, 0, W, H), d = gr.data, rg = rnd(7);
+  for (let i = 0; i < d.length; i += 4) {
+    const n = (rg() - .5) * 34;
+    d[i] += n; d[i + 1] += n; d[i + 2] += n;
+  }
+  ctx.putImageData(gr, 0, 0);
+  document.title = "ready";
+}
+main();
+</script>
+</body>
+</html>

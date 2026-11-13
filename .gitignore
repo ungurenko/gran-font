@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# generated poster backgrounds and renders — heavy, regenerate from the prompts
+posters/**/gen/
+posters/**/*.png
+posters/**/*.jpg
+*.zip

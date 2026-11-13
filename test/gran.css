@@ -1,0 +1,17 @@
+/* Gran family: 4 weights x upright / oblique. One CSS family name, weights 300 400 700 900. */
+@font-face { font-family: "Gran"; font-weight: 300; font-style: normal; font-display: block;
+  src: url("fonts/Gran-Light.woff2") format("woff2"), url("fonts/Gran-Light.otf") format("opentype"); }
+@font-face { font-family: "Gran"; font-weight: 300; font-style: italic; font-display: block;
+  src: url("fonts/Gran-LightItalic.woff2") format("woff2"), url("fonts/Gran-LightItalic.otf") format("opentype"); }
+@font-face { font-family: "Gran"; font-weight: 400; font-style: normal; font-display: block;
+  src: url("fonts/Gran-Regular.woff2") format("woff2"), url("fonts/Gran-Regular.otf") format("opentype"); }
+@font-face { font-family: "Gran"; font-weight: 400; font-style: italic; font-display: block;
+  src: url("fonts/Gran-RegularItalic.woff2") format("woff2"), url("fonts/Gran-RegularItalic.otf") format("opentype"); }
+@font-face { font-family: "Gran"; font-weight: 700; font-style: normal; font-display: block;
+  src: url("fonts/Gran-Bold.woff2") format("woff2"), url("fonts/Gran-Bold.otf") format("opentype"); }
+@font-face { font-family: "Gran"; font-weight: 700; font-style: italic; font-display: block;
+  src: url("fonts/Gran-BoldItalic.woff2") format("woff2"), url("fonts/Gran-BoldItalic.otf") format("opentype"); }
+@font-face { font-family: "Gran"; font-weight: 900; font-style: normal; font-display: block;
+  src: url("fonts/Gran-Black.woff2") format("woff2"), url("fonts/Gran-Black.otf") format("opentype"); }
+@font-face { font-family: "Gran"; font-weight: 900; font-style: italic; font-display: block;
+  src: url("fonts/Gran-BlackItalic.woff2") format("woff2"), url("fonts/Gran-BlackItalic.otf") format("opentype"); }

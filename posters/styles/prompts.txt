@@ -1,0 +1,19 @@
+faceted.png
+
+A vertical abstract background: a dark navy blue void filled with large sharp crystalline shards and faceted planes, like a low-poly ice crystal cluster rising from the bottom of the frame. Every surface is flat and angular with crisp straight edges, no curves anywhere. Cold cyan and ultramarine light rakes across the facets from the left, leaving deep shadows on the opposite sides. A few facets catch a thin line of pale white-pink highlight on their edges. The upper third of the frame is calm dark navy space with a faint haze, left clear for a headline. Fine film grain across everything. Palette: navy, ultramarine, cyan, a touch of pale pink. The picture contains only crystal geometry and light.
+
+concrete.png
+
+A vertical photograph of brutalist concrete architecture seen from a low angle: massive angular raw concrete slabs and a stepped monolithic facade with sharp right angles and deep geometric shadows, under a flat pale overcast sky filling the top third of the frame. Hard directional sunlight casts crisp diagonal shadows across the board-formed concrete. One single flat bright orange painted panel sits in the lower right of the facade as the only accent colour. Slightly desaturated grey tones, fine film grain, sharp architectural photography. The picture contains no people, no signs and no windows with text.
+
+riso.png
+
+A vertical abstract risograph print on warm cream uncoated paper: large flat geometric shapes in two overprinted ink colours only, fluorescent pink and cobalt blue, where the two inks overlap they mix into deep violet. The shapes are circles, half-circles, thick diagonal bars and a few rectangles, slightly misregistered with a small offset between the layers. Visible halftone dot texture in the gradients, rough ink grain, tiny paper fibres and specks. The upper third of the frame is mostly plain cream paper, left clear for a headline. Palette: cream, fluorescent pink, cobalt blue, violet. The picture contains only shapes, ink and paper.
+
+holo.png
+
+A vertical close-up of crumpled iridescent holographic foil filling the whole frame: sharp angular creases and flat folded planes, like crushed mylar. Each plane reflects a different colour: silver, icy cyan, soft pink, pale lilac and a few mint-green flashes. Hard specular highlights run along the creases. Studio light from above, very high contrast between bright planes and deep graphite shadows. The upper third of the frame has calmer, darker, smoother foil, left clear for a headline. Fine film grain. Palette: silver, graphite, cyan, pink, lilac. The picture contains only foil and light.
+
+blueprint.png
+
+A vertical technical drawing background on deep cobalt blue paper: a fine white grid of thin lines covering the whole sheet, with a few larger construction drawings in thin white and pale cyan lines, namely concentric circles, an isometric cube outline, diagonal axes and dashed arcs, all drawn with straight precise geometry. Soft paper grain, slightly uneven blue ink tone, a faint light vignette. The upper third of the frame holds only the fine grid, left clear for a headline. Palette: cobalt blue, white, pale cyan. The picture contains only lines and paper, with no letters and no numbers.

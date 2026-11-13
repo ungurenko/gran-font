@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gran · тест шрифта</title>
+<link rel="stylesheet" href="gran.css">
+<style>
+  :root {
+    --bg: #111111; --panel: #1b1b1b; --ink: #f4f4f4; --muted: #a6a6a6; --accent: #ff5a36; --line: rgba(244,244,244,.16);
+  }
+  :root[data-theme="light"] {
+    --bg: #f4f1ea; --panel: #ffffff; --ink: #141414; --muted: #5d5b55; --accent: #c8321a; --line: rgba(20,20,20,.16);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .gran { font-family: "Gran", sans-serif; font-weight: 700; font-synthesis: none; }
+  main { max-width: 1240px; margin: 0 auto; padding: 40px 32px 96px; }
+  .bar { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; font: 13px/1.4 ui-monospace, "SF Mono", Menlo, monospace; color: var(--muted); letter-spacing: .06em; }
+  .bar button { font: inherit; letter-spacing: inherit; color: var(--ink); background: transparent; border: 1px solid var(--line); padding: 8px 14px; cursor: pointer; }
+  .bar button:hover { border-color: var(--accent); color: var(--accent); }
+  section { margin-top: 72px; }
+  h2 { margin: 0 0 20px; font: 13px/1.4 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .hero { font-size: clamp(88px, 17vw, 230px); line-height: .95; letter-spacing: -.01em; margin: 40px 0 0; }
+  .hero small { display: block; font-size: .32em; color: var(--accent); margin-top: .25em; letter-spacing: 0; }
+  .panel { background: var(--panel); padding: 28px 32px; border: 1px solid var(--line); }
+  .row { overflow-wrap: anywhere; }
+  .wrow { font-size: 44px; line-height: 1.25; overflow-wrap: anywhere; }
+  .a56 { font-size: 56px; line-height: 1.25; }
+  .a40 { font-size: 40px; line-height: 1.3; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+  .p18 { font-size: 18px; line-height: 1.6; }
+  .p24 { font-size: 24px; line-height: 1.5; }
+  .p32 { font-size: 32px; line-height: 1.35; }
+  .ladder > div { display: flex; gap: 20px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .ladder span.t { flex: none; width: 56px; font: 12px ui-monospace, Menlo, monospace; color: var(--muted); }
+  .pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+  .pair { background: var(--panel); border: 1px solid var(--line); padding: 14px 16px; }
+  .pair .k { font-size: 64px; line-height: 1.1; }
+  .pair .n { font-size: 64px; line-height: 1.1; font-kerning: none; color: var(--muted); }
+  .pair .l { font: 11px ui-monospace, Menlo, monospace; color: var(--muted); letter-spacing: .06em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
+  .cell { background: var(--panel); border: 1px solid var(--line); text-align: center; padding: 12px 4px 6px; }
+  .cell .g { font-size: 54px; line-height: 1.2; height: 78px; }
+  .cell .u { font: 10px ui-monospace, Menlo, monospace; color: var(--muted); }
+  .tester { width: 100%; min-height: 160px; font-size: 72px; line-height: 1.15; background: var(--panel); color: var(--ink); border: 1px solid var(--line); padding: 20px 24px; resize: vertical; }
+  .range { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; font: 13px ui-monospace, Menlo, monospace; color: var(--muted); }
+  .range input { width: 260px; accent-color: var(--accent); }
+  .mono { font: 12px/1.6 ui-monospace, Menlo, monospace; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="bar">
+    <span>GRAN BOLD · v0.2 · ЛАТИНИЦА + КИРИЛЛИЦА</span>
+    <button type="button" id="theme">Светлая / тёмная</button>
+  </div>
+
+  <h1 class="gran hero">Gran<small>Грань</small></h1>
+
+  <section>
+    <h2>Семейство: 4 веса, прямые и наклонные</h2>
+    <div class="panel" style="display:grid;gap:6px">
+      <div class="gran wrow" style="font-weight:300">Light 300 · Грань Gran · AVA Ёж 2026</div>
+      <div class="gran wrow" style="font-weight:300;font-style:italic">Light Italic · Грань Gran · AVA Ёж 2026</div>
+      <div class="gran wrow" style="font-weight:400">Regular 400 · Грань Gran · AVA Ёж 2026</div>
+      <div class="gran wrow" style="font-weight:400;font-style:italic">Regular Italic · Грань Gran · AVA Ёж 2026</div>
+      <div class="gran wrow" style="font-weight:700">Bold 700 · Грань Gran · AVA Ёж 2026</div>
+      <div class="gran wrow" style="font-weight:700;font-style:italic">Bold Italic · Грань Gran · AVA Ёж 2026</div>
+      <div class="gran wrow" style="font-weight:900">Black 900 · Грань Gran · AVA Ёж 2026</div>
+      <div class="gran wrow" style="font-weight:900;font-style:italic">Black Italic · Грань Gran · AVA Ёж 2026</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Алфавиты</h2>
+    <div class="panel gran a56">
+      <div class="row">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+      <div class="row">abcdefghijklmnopqrstuvwxyz</div>
+      <div class="row">АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ</div>
+      <div class="row">абвгдеёжзийклмнопрстуфхцчшщъыьэюя</div>
+      <div class="row">ҐЄІЇ ґєії 0123456789</div>
+      <div class="row a40">.,:;!?'"«»“”‘’…-–—_()[]{}/\|*+=&lt;&gt;~^`@#$%&amp;№€₽°•</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Заголовки</h2>
+    <div class="cols">
+      <div class="panel gran" style="font-size:88px;line-height:1">Новый шрифт для&nbsp;бренда</div>
+      <div class="panel gran" style="font-size:88px;line-height:1">Typography is&nbsp;the&nbsp;voice</div>
+    </div>
+    <div class="panel gran" style="margin-top:24px;font-size:64px;line-height:1.05">ЖИВАЯ ГЕОМЕТРИЯ · КВАРТАЛ 04 · ВЫСТАВКА ГРАНЕЙ · 40.000₽</div>
+  </section>
+
+  <section>
+    <h2>Абзацы</h2>
+    <div class="cols">
+      <div class="panel">
+        <div class="gran p18">Каждый охотник желает знать, где сидит фазан. Съешь ещё этих мягких французских булок, да выпей чаю. Широкая электрификация южных губерний даст мощный толчок подъёму сельского хозяйства. В 2026 году мы выпустили 1.250 экземпляров, цена от 1.990₽.</div>
+        <p class="mono">18 px · Gran Bold</p>
+      </div>
+      <div class="panel">
+        <div class="gran p24">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. How vexingly quick daft zebras jump! 0123456789.</div>
+        <p class="mono">24 px · Gran Bold</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:24px">
+      <div class="gran p32">Грань: огранённый кристалл, у которого вместо дуг острые фаски. Подходит для афиш, заголовков и коротких строк.</div>
+      <p class="mono">32 px · Gran Bold</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Лесенка размеров</h2>
+    <div class="panel ladder gran">
+      <div><span class="t">12</span><span style="font-size:12px">Съешь ещё этих мягких французских булок, да выпей чаю · The quick brown fox jumps over the lazy dog</span></div>
+      <div><span class="t">14</span><span style="font-size:14px">Съешь ещё этих мягких французских булок, да выпей чаю · The quick brown fox jumps over the lazy dog</span></div>
+      <div><span class="t">16</span><span style="font-size:16px">Съешь ещё этих мягких французских булок, да выпей чаю · The quick brown fox jumps over the lazy dog</span></div>
+      <div><span class="t">20</span><span style="font-size:20px">Съешь ещё этих мягких французских булок, да выпей чаю</span></div>
+      <div><span class="t">28</span><span style="font-size:28px">Съешь ещё этих мягких французских булок</span></div>
+      <div><span class="t">40</span><span style="font-size:40px">Съешь ещё этих мягких французских</span></div>
+      <div><span class="t">64</span><span style="font-size:64px">Съешь ещё этих мягких</span></div>
+      <div><span class="t">96</span><span style="font-size:96px;line-height:1.1">Грань Gran</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ритм: коридоры между буквами</h2>
+    <div class="panel gran" style="font-size:56px;line-height:1.3">
+      <div>HHOHOOHOHH nnonnoonon</div>
+      <div>НННОНООНОНН ннонноонон</div>
+      <div>ПППИППИПИП ппииппипии</div>
+      <div>ВЕРНИСАЖ Грань Ёлка Щётка</div>
+      <div>ЦЕЛЬЮ ЮЛЯ ЧАЙКА ЪЫЬ ЭХО</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Кернинг: сверху с кернингом, снизу без</h2>
+    <div class="pairs gran" id="pairs"></div>
+  </section>
+
+  <section>
+    <h2>Свой текст</h2>
+    <div class="range"><label for="sz">Размер</label><input id="sz" type="range" min="16" max="160" value="72"><span id="szv">72 px</span></div>
+    <textarea class="tester gran" id="tester" spellcheck="false">Гранёный стакан, фаски и Квартал. AVATAR WAVE 2026.</textarea>
+  </section>
+
+  <section>
+    <h2>Все знаки</h2>
+    <div class="grid gran" id="grid"></div>
+  </section>
+</main>
+
+<script src="codepoints.js"></script>
+<script>
+  (function () {
+    var root = document.documentElement;
+    document.getElementById('theme').addEventListener('click', function () {
+      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+    });
+
+    var pairs = ['AV', 'AT', 'TA', 'WA', 'LT', 'LY', 'PA', 'FA', 'AY', 'VA', 'To', 'Ya', 'Wo', 'r.', 'v,',
+                 'АТ', 'ТА', 'УА', 'АУ', 'ЛТ', 'ЛУ', 'РА', 'ГА', 'ТО', 'Та', 'Го', 'ДУ', 'ЯУ', 'ЪТ'];
+    var holder = document.getElementById('pairs');
+    holder.innerHTML = pairs.map(function (p) {
+      return '<div class="pair"><div class="k">' + p + '</div><div class="n">' + p + '</div><div class="l">' + p + '</div></div>';
+    }).join('');
+
+    var html = '';
+    (window.GRAN_CODEPOINTS || []).forEach(function (c) {
+      var ch = String.fromCodePoint(c);
+      var hex = 'U+' + c.toString(16).toUpperCase().padStart(4, '0');
+      html += '<div class="cell"><div class="g">' + ch.replace('&', '&amp;').replace('<', '&lt;') + '</div><div class="u">' + hex + '</div></div>';
+    });
+    document.getElementById('grid').innerHTML = html;
+
+    var tester = document.getElementById('tester');
+    var sz = document.getElementById('sz');
+    sz.addEventListener('input', function () {
+      tester.style.fontSize = sz.value + 'px';
+      document.getElementById('szv').textContent = sz.value + ' px';
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gran · таблица знаков</title>
+<link rel="stylesheet" href="gran.css">
+<style>
+  * { box-sizing: border-box; }
+  .pick { position: sticky; top: 0; z-index: 2; background: #111; padding: 10px 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .pick button { font: 12px ui-monospace, Menlo, monospace; color: #f4f4f4; background: #1b1b1b; border: 1px solid #444; padding: 6px 10px; cursor: pointer; }
+  .pick button[aria-pressed="true"] { border-color: #ff5a36; color: #ff5a36; }
+  body { margin: 0; background: #111; color: #f4f4f4; font-family: system-ui, sans-serif; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 6px; padding: 12px; }
+  .cell { position: relative; background: #1b1b1b; height: 150px; overflow: hidden; }
+  /* guides for font-size 100px, line-height 120px, hhea ascent 950: baseline at 95px */
+  .cell::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(#ff5a36, #ff5a36) 0 25px / 100% 1px no-repeat,
+      linear-gradient(#4aa3ff, #4aa3ff) 0 43px / 100% 1px no-repeat,
+      linear-gradient(#ff5a36, #ff5a36) 0 95px / 100% 1px no-repeat,
+      linear-gradient(#555, #555) 0 112px / 100% 1px no-repeat; opacity: .55; }
+  .g { font-family: "Gran", sans-serif; font-weight: inherit; font-style: inherit; font-synthesis: none; font-size: 100px; line-height: 120px; text-align: center; white-space: nowrap; }
+  .u { position: absolute; left: 6px; bottom: 4px; font: 10px ui-monospace, Menlo, monospace; color: #888; }
+</style>
+</head>
+<body>
+<div class="pick" id="pick"></div>
+<div class="grid" id="grid"></div>
+<script src="codepoints.js"></script>
+<script>
+  var styles = [[300,'normal','Light'],[300,'italic','Light It'],[400,'normal','Regular'],[400,'italic','Regular It'],
+                [700,'normal','Bold'],[700,'italic','Bold It'],[900,'normal','Black'],[900,'italic','Black It']];
+  var pick = document.getElementById('pick');
+  var q = new URLSearchParams(location.search).get('s');
+  var cur = q !== null ? +q : 4;
+  function setStyle(i) {
+    cur = i;
+    document.getElementById('grid').style.fontWeight = styles[i][0];
+    document.getElementById('grid').style.fontStyle = styles[i][1];
+    [].forEach.call(pick.children, function (b, k) { b.setAttribute('aria-pressed', k === i); });
+  }
+  styles.forEach(function (s, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = s[2];
+    b.addEventListener('click', function () { setStyle(i); }); pick.appendChild(b);
+  });
+  var html = '';
+  GRAN_CODEPOINTS.forEach(function (c) {
+    var ch = String.fromCodePoint(c).replace('&', '&amp;').replace('<', '&lt;');
+    html += '<div class="cell"><div class="g">' + ch + '</div><div class="u">U+' + c.toString(16).toUpperCase().padStart(4, '0') + '</div></div>';
+  });
+  document.getElementById('grid').innerHTML = html;
+  setStyle(cur);
+</script>
+</body>
+</html>

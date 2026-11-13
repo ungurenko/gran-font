@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Gran styles poster</title>
+<style>
+  @font-face { font-family: "Gran"; font-weight: 400; src: url("../../dist/Gran-Regular.woff2") format("woff2"); }
+  @font-face { font-family: "Gran"; font-weight: 300; src: url("../../dist/Gran-Light.woff2") format("woff2"); }
+  @font-face { font-family: "Gran"; font-weight: 700; src: url("../../dist/Gran-Bold.woff2") format("woff2"); }
+  @font-face { font-family: "Gran"; font-weight: 900; src: url("../../dist/Gran-Black.woff2") format("woff2"); }
+  html, body { margin: 0; background: #000; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1088" height="1360"></canvas>
+<script>
+/* ?style=faceted|concrete|riso|holo|blueprint &title=ГРАНЬ &top=... &topr=... &b1=... &b2=... &b3=... */
+const q = new URLSearchParams(location.search);
+const style = q.get("style") || "faceted";
+const P = {
+  title: q.get("title") || "ГРАНЬ",
+  top: q.get("top") || "GRAN · ДИСПЛЕЙНЫЙ ШРИФТ",
+  topr: q.get("topr") || "13 · 11 · 26",
+  b1: q.get("b1") || "ЛАТИНИЦА + КИРИЛЛИЦА",
+  b2: q.get("b2") || "8 НАЧЕРТАНИЙ",
+  b3: q.get("b3") || "БЕЗ ЕДИНОЙ ДУГИ",
+};
+/* Пресеты: weight вес заголовка, base линия низа букв, fill цвет букв, blend режим наложения,
+   ink цвет мелкого текста, line цвет линий, shade затемнение фона сверху (0..1), grain зерно */
+const S = {
+  faceted:   { bg: "gen/faceted.png",   weight: 900, base: 470, fill: "#ffffff", glow: "rgba(90,200,255,.75)", blend: "source-over", ink: "#ffffff", line: "rgba(255,255,255,.5)", shade: 0,   grain: 18 },
+  concrete:  { bg: "gen/concrete.png",  weight: 900, base: 420, fill: "#111111", glow: null,                   blend: "source-over", ink: "#111111", line: "rgba(17,17,17,.6)",    shade: 0,   grain: 14, accent: "#e8601c" },
+  /* слово за зданием: поверх букв рисуется слой «здание» (PNG с прозрачным небом) */
+  "concrete-behind": { bg: "gen/concrete.png", front: "gen/concrete_building.png", weight: 900, base: 490, fill: "#111111", glow: null, blend: "source-over", ink: "#111111", line: "rgba(17,17,17,.6)", shade: 0, grain: 14 },
+  riso:      { bg: "gen/riso.png",     weight: 900, base: 400, fill: "#1f3fd0", glow: null,                   blend: "multiply",    ink: "#1f2a8a", line: "rgba(31,42,138,.6)",   shade: 0,   grain: 16, accent: "#ff3d8b" },
+  holo:      { bg: "gen/holo.png",      weight: 900, base: 470, fill: "#0b0b10", glow: null,                   blend: "source-over", ink: "#0b0b10", line: "rgba(11,11,16,.6)",    shade: 0,   grain: 14 },
+  blueprint: { bg: "gen/blueprint.png", weight: 300, base: 470, fill: "#ffffff", glow: "rgba(150,220,255,.55)", blend: "source-over", ink: "#ffffff", line: "rgba(255,255,255,.55)", shade: 0,   grain: 12 },
+}[style];
+
+const W = 1088, H = 1360, M = 64;
+const cv = document.getElementById("c"), ctx = cv.getContext("2d");
+function rnd(s) { return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+
+async function main() {
+  await Promise.all(["900 100px Gran", "400 20px Gran", "300 20px Gran", "700 20px Gran"].map(f => document.fonts.load(f, "АБВГЯgran")));
+  const bg = new Image(); bg.src = S.bg; await bg.decode();
+
+  // фон «cover»
+  const k = Math.max(W / bg.width, H / bg.height), bw = bg.width * k, bh = bg.height * k;
+  ctx.drawImage(bg, (W - bw) / 2, (H - bh) / 2, bw, bh);
+
+  // заголовок
+  const maxW = W - M * 2;
+  let size = 400;
+  ctx.font = `${S.weight} ${size}px Gran`;
+  size = Math.floor(size * maxW / ctx.measureText(P.title).width);
+  ctx.font = `${S.weight} ${size}px Gran`;
+  ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+  const x0 = (W - ctx.measureText(P.title).width) / 2;
+
+  ctx.save();
+  if (S.glow) { ctx.shadowColor = S.glow; ctx.shadowBlur = 40; }
+  ctx.globalCompositeOperation = S.blend;
+  ctx.fillStyle = S.fill;
+  ctx.fillText(P.title, x0, S.base);
+  ctx.restore();
+
+  // слой «здание» поверх букв: слово оказывается за зданием
+  if (S.front) {
+    const fr = new Image(); fr.src = S.front; await fr.decode();
+    ctx.drawImage(fr, (W - bw) / 2, (H - bh) / 2, bw, bh);
+  }
+
+  // акцентная плашка под заголовком (там, где есть акцентный цвет)
+  if (S.accent) {
+    ctx.save(); ctx.globalCompositeOperation = style === "riso" ? "multiply" : "source-over";
+    ctx.fillStyle = S.accent; ctx.fillRect(M, S.base + 28, 120, 12); ctx.restore();
+  }
+
+  // мелкий текст
+  ctx.fillStyle = S.ink;
+  ctx.font = "700 20px Gran"; ctx.letterSpacing = "3px";
+  ctx.textAlign = "left";  ctx.fillText(P.top, M, M + 18);
+  ctx.textAlign = "right"; ctx.fillText(P.topr, W - M, M + 18);
+  ctx.fillStyle = S.line; ctx.fillRect(M, M + 38, W - M * 2, 1);
+
+  const by = H - M;
+  // нижняя строка на плашке, чтобы читалась на любом фоне
+  const bar = ctx.createLinearGradient(0, by - 90, 0, H);
+  const dark = style === "faceted" || style === "blueprint";
+  bar.addColorStop(0, "rgba(0,0,0,0)"); bar.addColorStop(1, dark ? "rgba(0,0,0,.35)" : "rgba(255,255,255,.88)");
+  ctx.fillStyle = bar; ctx.fillRect(0, by - 90, W, H - by + 90);
+
+  ctx.fillStyle = S.ink; ctx.font = "400 20px Gran"; ctx.letterSpacing = "3px";
+  ctx.textAlign = "left";   ctx.fillText(P.b1, M, by);
+  ctx.textAlign = "center"; ctx.fillText(P.b2, W / 2, by);
+  ctx.textAlign = "right";  ctx.fillText(P.b3, W - M, by);
+  ctx.fillStyle = S.line; ctx.fillRect(M, by - 38, W - M * 2, 1);
+
+  // зерно
+  const gr = ctx.getImageData(0, 0, W, H), d = gr.data, rg = rnd(7);
+  for (let i = 0; i < d.length; i += 4) {
+    const n = (rg() - .5) * S.grain;
+    d[i] += n; d[i + 1] += n; d[i + 2] += n;
+  }
+  ctx.putImageData(gr, 0, 0);
+  document.title = "ready";
+}
+main().catch(e => { document.title = "ERR " + e.message; });
+</script>
+</body>
+</html>

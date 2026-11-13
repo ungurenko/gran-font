@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="degree" format="2">
+  <advance width="340"/>
+  <unicode hex="00B0"/>
+  <outline>
+    <contour>
+      <point x="295" y="467" type="line"/>
+      <point x="235" y="407" type="line"/>
+      <point x="105" y="407" type="line"/>
+      <point x="45" y="467" type="line"/>
+      <point x="45" y="633" type="line"/>
+      <point x="105" y="693" type="line"/>
+      <point x="235" y="693" type="line"/>
+      <point x="295" y="633" type="line"/>
+    </contour>
+    <contour>
+      <point x="115" y="607" type="line"/>
+      <point x="115" y="493" type="line"/>
+      <point x="135" y="473" type="line"/>
+      <point x="205" y="473" type="line"/>
+      <point x="225" y="493" type="line"/>
+      <point x="225" y="607" type="line"/>
+      <point x="205" y="627" type="line"/>
+      <point x="135" y="627" type="line"/>
+    </contour>
+  </outline>
+</glyph>
