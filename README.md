@@ -2,61 +2,52 @@
 
 # Gran · Грань
 
-**A display sans with no curves: every round shape is cut by straight 45° facets.**
+**Дисплейный гротеск без дуг: каждое скругление срезано фаской под 45°.**
 
-Latin & Cyrillic · 8 styles · 184 glyphs per style · SIL Open Font License 1.1
+Латиница и кириллица · 8 начертаний · 184 глифа в каждом · свободная лицензия SIL OFL 1.1
 
-[![License: SIL OFL 1.1](https://img.shields.io/badge/license-SIL%20OFL%201.1-111111)](OFL.txt)
-[![Release](https://img.shields.io/github/v/release/ungurenko/gran-font?color=ff5a36)](https://github.com/ungurenko/gran-font/releases)
-[![Styles](https://img.shields.io/badge/styles-8-111111)](#styles)
+[![Лицензия: SIL OFL 1.1](https://img.shields.io/badge/license-SIL%20OFL%201.1-111111)](OFL.txt)
+[![Релиз](https://img.shields.io/github/v/release/ungurenko/gran-font?color=ff5a36)](https://github.com/ungurenko/gran-font/releases)
 
-<img src="docs/specimen.png" alt="Gran specimen: weights, Cyrillic, Ukrainian, punctuation" width="100%">
+<img src="docs/specimen.png" alt="Образец шрифта Gran: начертания, кириллица, пунктуация" width="100%">
 
 </div>
 
 ---
 
-## 🎯 What it is
+## 🎯 Что это
 
-*Грань* means "facet" in Russian, and everything in the typeface follows from that word. There is not a single arc in
-it: every curve is replaced by straight cuts at 45°, so O turns into an octagon, and the counters of Б, В and Я are
-built from the same straight pieces as the Latin ones.
+«Грань» — дисплейный гротеск, в котором нет ни одной дуги. Каждое скругление заменено прямыми фасками под 45°: буква О превращается в восьмиугольник, просветы у Б, В и Я собраны из тех же прямых кусков, что и латиница.
 
-- **8 styles** — Light 300, Regular 400, Bold 700, Black 900, each upright and oblique
-- **Two alphabets** — Latin and Cyrillic, including the Ukrainian letters Ґ Є І Ї
-- **Three formats** — OTF, TTF and WOFF2 for every style, plus UFO sources for the upright weights
-- **Original** — drawn from scratch as centre-line skeletons, no third-party glyphs or fonts used as a base
+- **8 начертаний** — Light 300, Regular 400, Bold 700, Black 900, каждое прямое и наклонное.
+- **Два алфавита** — латиница и кириллица, включая украинские Ґ Є І Ї.
+- **Три формата** — OTF, TTF и WOFF2 для каждого начертания, плюс исходники UFO для прямых.
+- **Оригинальный рисунок** — глифы построены с нуля по осевым линиям, чужие шрифты за основу не брались.
 
-It is a display face: headlines, covers, logos, posters, big numbers, video titles. Paragraphs work from 18 px in
-Regular or Light. Bold and Black are for large sizes only.
+Шрифт дисплейный: заголовки, обложки, логотипы, афиши, крупные цифры, титры в видео. Абзацы он держит от 18 px в Regular или Light, Bold и Black остаются для крупного кегля.
 
-## 🖋 Styles
+## 🖋 Начертания
 
-| Style | Vertical stroke | usWeightClass | Family name (ID 1) | Typographic (ID 16 / 17) |
+| Начертание | Вертикальный штрих | usWeightClass | Имя семейства (ID 1) | Типографское (ID 16 / 17) |
 | --- | --- | --- | --- | --- |
 | `Gran-Light` | 56 | 300 | `Gran Light` | `Gran` / `Light` |
 | `Gran-Regular` | 78 | 400 | `Gran` | |
 | `Gran-Bold` | 100 | 700 | `Gran` | |
 | `Gran-Black` | 134 | 900 | `Gran Black` | `Gran` / `Black` |
 
-Every weight has an oblique: 10° of shear, `italicAngle -10`. It is the upright shape slanted, not a drawn italic — a
-deliberate choice, the concept has no calligraphic forms at all. Outer edges, glyph widths and heights stay the same
-across weights; only stroke width and a small spacing factor change (lighter weights get more air).
+У каждого начертания есть наклонное: сдвиг 10°, `italicAngle -10`. Наклонное — это скошенное прямое, отдельный курсив не рисовался: в концепции нет каллиграфии. Внешние края, ширины и высоты знаков совпадают у всех начертаний, меняются толщина штриха и небольшой коэффициент разрядки: светлые начертания дышат свободнее.
 
-## 🚀 Install
+## 🚀 Установка
 
-### On a computer
+### На компьютер
 
-Download the [latest release](https://github.com/ungurenko/gran-font/releases) and open `Gran-<Style>.otf` or `.ttf`
-with Font Book (macOS) or double-click it on Windows. Restart the app that was open while installing; on macOS all
-eight styles then group under one family, **Gran**.
+Скачай [последний релиз](https://github.com/ungurenko/gran-font/releases) и открой файл `Gran-<Начертание>.otf` или `.ttf` в Font Book на macOS либо двойным щелчком на Windows. После установки перезапусти программу, которая уже была открыта: на macOS все восемь начертаний собираются в одно семейство **Gran**.
 
-Canva (Pro) accepts an OTF upload. Google Docs can't install fonts at all, and Figma in a browser only sees local fonts
-through its desktop app — for those, use the web setup below.
+Canva (Pro) принимает OTF загрузкой. Google Docs устанавливать шрифты не умеет, а Figma в браузере видит локальные шрифты только через своё настольное приложение. Для них подойдёт подключение для веба ниже.
 
-### On the web
+### Для веба
 
-Grab the `.woff2` files you need (each style is a separate file) and add one `@font-face` per style:
+Возьми нужные файлы `.woff2` (каждое начертание лежит отдельным файлом) и добавь по одному `@font-face` на начертание:
 
 ```css
 @font-face {
@@ -65,6 +56,7 @@ Grab the `.woff2` files you need (each style is a separate file) and add one `@f
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: "Gran";
   src: url("Gran-BlackItalic.woff2") format("woff2");
@@ -73,50 +65,48 @@ Grab the `.woff2` files you need (each style is a separate file) and add one `@f
 }
 ```
 
-`test/gran.css` already has all eight `@font-face` rules, weights 300 400 700 900, upright and italic.
+В `test/gran.css` уже лежат все восемь правил `@font-face`: веса 300, 400, 700 и 900, прямые и наклонные.
 
-### In Figma, Photoshop, Illustrator
+### Для Figma, Photoshop, Illustrator
 
-Install the OTF files into the system fonts (the desktop apps read local fonts), or drop `dist/Gran-*.ufo` into a
-font editor to work on the outlines.
+Установи файлы OTF в системные шрифты: настольные программы видят локальные шрифты. Для работы с контурами положи `dist/Gran-*.ufo` в редактор шрифтов.
 
-## 🖼 In use
+## 🖼 В работе
 
-Posters set in Gran over generated backgrounds. The word is always real type, never AI-drawn text: the model does the
-background, the letters are laid out in HTML/canvas.
+Афиши, набранные «Гранью» поверх сгенерированных фонов. Слово всегда настоящее, набрано шрифтом: модель рисует фон, буквы расставляются в HTML и canvas.
 
-| ![Concrete](docs/poster-concrete.jpg) | ![Risograph](docs/poster-riso.jpg) |
+| ![Бетон](docs/poster-concrete.jpg) | ![Рисограф](docs/poster-riso.jpg) |
 | --- | --- |
-| **Concrete** — Brutalist slab, Black type | **Risograph** — two inks on cream, multiply |
-| ![Blueprint](docs/poster-blueprint.jpg) | ![Neon](docs/poster-neon.jpg) |
-| **Blueprint** — Cobalt technical drawing, Light | **Neon** — Dark HUD glow, Black type |
+| **Бетон** — брутальная плита, чёрные буквы Black | **Рисограф** — два цвета на кремовой бумаге, multiply |
+| ![Чертёж](docs/poster-blueprint.jpg) | ![Неон](docs/poster-neon.jpg) |
+| **Чертёж** — кобальтовый ватман, светлые буквы Light | **Неон** — тёмный HUD со свечением, буквы Black |
 
-The recipes live in [`posters/`](posters/README.md): an HTML template plus the prompt that made each background.
+Рецепты лежат в папке [`posters/`](posters/README.md): шаблон на HTML и промпт, которым сделан каждый фон.
 
-## 📦 What's inside
+## 📦 Что внутри
 
 ```
 gran-font/
-├── dist/          24 binaries (OTF, TTF, WOFF2) + 4 UFO sources
-├── src/glyphs.py  glyph skeletons — the real source of the design
-├── src/build.py   skeleton → outline → OTF / TTF / WOFF2 / UFO
-├── test/          specimen pages and @font-face CSS
-├── posters/       poster recipes
-└── OFL.txt        licence
+├── dist/          24 файла (OTF, TTF, WOFF2) и 4 исходника UFO
+├── src/glyphs.py  осевые линии глифов — настоящий исходник рисунка
+├── src/build.py   осевые → контур → OTF / TTF / WOFF2 / UFO
+├── test/          тестовые страницы и CSS с @font-face
+├── posters/       рецепты афиш
+└── OFL.txt        лицензия
 ```
 
-| File | What |
+| Файл | Что это |
 | --- | --- |
-| `src/glyphs.py` | Glyph skeletons for every character; each shape is a centre line plus a stroke width |
-| `src/build.py` | Warps skeletons per weight, builds outlines, writes all formats and the name/OS2 tables |
-| `test/index.html` | Main test page: family, specimens, sizes, rhythm, kerning, your own text |
-| `test/chart.html` | Every glyph at 100 px with guides, a button per style (`?s=0..7`) |
-| `test/formats.html` | OTF, TTF and WOFF2 side by side |
-| `test/display.html` | Large display samples |
-| `test/gran.css` | `@font-face` for the whole family |
-| `posters/README.md` | How a poster is put together, with the prompt behind each background |
+| `src/glyphs.py` | Осевые линии каждого знака: форма — это центральная линия плюс толщина штриха |
+| `src/build.py` | Раздвигает осевые линии под вес, строит контуры, пишет все форматы и таблицы name и OS2 |
+| `test/index.html` | Главная тестовая страница: семейство, образцы, кегли, ритм, кернинг, свой текст |
+| `test/chart.html` | Все глифы по 100 px с направляющими, кнопка на каждое начертание (`?s=0..7`) |
+| `test/formats.html` | OTF, TTF и WOFF2 рядом |
+| `test/display.html` | Крупные образцы |
+| `test/gran.css` | `@font-face` на всё семейство |
+| `posters/README.md` | Как собирается афиша, с промптами фонов |
 
-## 🔨 Rebuild
+## 🔨 Пересборка
 
 ```bash
 python3 -m venv .venv
@@ -124,51 +114,46 @@ python3 -m venv .venv
 .venv/bin/python src/build.py
 ```
 
-The script rebuilds all 8 styles into `dist/` and prints glyph counts and file sizes per style. Glyphs are edited only
-in `src/glyphs.py`.
+Скрипт пересобирает все восемь начертаний в `dist/` и печатает по каждому число глифов и размер файлов. Глифы правятся только в `src/glyphs.py`.
 
-## 🔤 Coverage
+## 🔤 Покрытие
 
-184 glyphs per style:
+184 глифа в каждом начертании:
 
-- Basic Latin, all 94 printable ASCII characters
-- Russian А–Я, а–я, Ё, ё; Ukrainian Ґ, Є, І, Ї and their lowercase forms
-- Digits, `« » “ ” ‘ ’ – — … • № € ₽ °`
-- Pair kerning (`kern` feature, GPOS) for diagonal letters and Cyrillic pairs, scaled with the spacing factor
+- базовая латиница, все 94 печатных символа ASCII;
+- русские А–Я, а–я, Ё, ё; украинские Ґ, Є, І, Ї и их строчные;
+- цифры, `« » “ ” ‘ ’ – — … • № € ₽ °`;
+- парный кернинг (`kern`, GPOS) для диагональных латинских и кириллических пар, масштабируется вместе с разрядкой.
 
-Not included: Greek, Latin Extended, Cyrillic Extended, combining marks, and the middle dot `·` (use `•` or `—`).
+Чего нет: греческого, Latin Extended, Cyrillic Extended, комбинируемых знаков и точки посередине `·`. Вместо неё ставь `•` или `—`.
 
-## 📐 Metrics
+## 📐 Метрики
 
-Units per em 1000. Cap height 700, x-height 520, ascender 720, descender 170 (feet and tails).
-hhea 950 / −250, typo 800 / −200 with 200 gap, win 950 / 250. No hinting; `gasp` asks for smooth rendering.
+UPM 1000. Высота прописных 700, строчных 520, верх 720, низ 170 (ножки и хвосты). hhea 950 / −250, typo 800 / −200 с зазором 200, win 950 / 250. Хинтинга нет, `gasp` просит сглаженную отрисовку.
 
-## ✅ Checked
+## ✅ Проверено
 
-- OTS, the sanitizer browsers use, accepts all 24 files.
-- OTF and TTF outlines match for every glyph in every style (area, bounds, advance).
-- Bold is unchanged by the weight work: 0 differences against v0.2.
-- A Chromium browser loads all styles as one CSS family and renders them.
+- OTS, санитайзер браузеров, принимает все 24 файла.
+- Контуры OTF и TTF совпадают у каждого глифа в каждом начертании: площадь, границы, ширина.
+- Bold не изменился при работе над весами: 0 отличий от v0.2.
+- Браузер на Chromium грузит все начертания как одно семейство и рисует их.
 
-## ⚠️ Known limits
+## ⚠️ Ограничения
 
-An honest list, because a font that hides its gaps is worse than one that names them.
+Честный список: шрифт, который прячет свои дырки, хуже шрифта, который их называет.
 
-- Outlines are straight segments (degree-1 Béziers) — the concept has no curves at all.
-- The oblique is a shear of the upright: no true Cyrillic italic forms such as д and т.
-- No TrueType hinting, so Windows GDI at small sizes is unchecked.
-- Latin Extended, Cyrillic Extended, combining marks and Greek are missing.
-- A small set of kerning pairs, tuned by eye on Bold. No kerning classes; Light and Black are not tuned separately.
-- Not tested in Photoshop, Illustrator, Figma, Word or on Windows.
-- `I`, `l` and `|` share one plain stem and differ by height only (`l` is 20 units taller).
+- Контуры — прямые отрезки (кривые Безье первой степени): в концепции нет дуг.
+- Наклонное начертание — скошенное прямое, настоящих курсивных форм (д, т) нет.
+- Хинтинга нет, поэтому мелкий кегль в Windows GDI не проверен.
+- Latin Extended, Cyrillic Extended, комбинируемые знаки и греческий отсутствуют.
+- Кернинга немного, он подобран на глаз по Bold. Классов кернинга нет, Light и Black отдельно не настроены.
+- В Photoshop, Illustrator, Figma, Word и на Windows шрифт не проверялся.
+- `I`, `l` и `|` — один прямой штрих, различаются высотой: `l` на 20 единиц выше.
 
-## 📄 Licence
+## 📄 Лицензия
 
-SIL Open Font License 1.1 — see [OFL.txt](OFL.txt). In short: use it free of charge, including commercially, embed it
-in apps and on websites, modify and redistribute it; don't sell the font files on their own, and derivative fonts must
-stay under the same licence. The licence is also written into the name table of every file.
+SIL Open Font License 1.1, текст в файле [OFL.txt](OFL.txt). Коротко: пользуйся бесплатно, в том числе в коммерческих проектах, встраивай в приложения и на сайты, меняй и раздавай. Продавать сами файлы шрифта нельзя, производные шрифты остаются под той же лицензией. Лицензия прописана в таблице name каждого файла.
 
-## 👤 Author
+## 👤 Автор
 
-Alexander ([@ungurenko](https://github.com/ungurenko)) — design and the code that draws it. Issues and pull requests
-are welcome; for a new glyph or a fixed pair, say which style and what is wrong.
+Александр ([@ungurenko](https://github.com/ungurenko)) — рисунок и код, который его строит. Issues и пул-реквесты приветствуются: если нужен новый глиф или сбита пара, напиши начертание и что именно не так.
